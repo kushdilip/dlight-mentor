@@ -10,13 +10,23 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "deploy": "ember build --environment production && gulp deploy"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kushdilip/dlight-mentor"
+  },
+  "bugs": {
+    "url": "https://github.com/kushdilip/dlight-mentor/issues"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": {
+    "name": "Dilip",
+    "email": "hello@kushdilip.com"
+  },
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -36,6 +46,8 @@
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
+    "gulp": "^3.9.1",
+    "gulp-gh-pages": "^0.5.4",
     "loader.js": "^4.0.1"
   }
 }

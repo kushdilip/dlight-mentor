@@ -1,23 +1,26 @@
-<h4>Goals</h4>
-<ul>
-  {{#each content.goals as |goal|}}
-    <li>{{goal.title}}</li>
-  {{/each}}
-</ul>
+<div class="row">
+    <div class="col-sm-8">
+      <h4>Goals</h4>
+      <ul>
+        {{#each content.goals as |goal|}}
+          <li>{{goal.title}}</li>
+        {{/each}}
+      </ul>
 
-<h4>Create Goal</h4>
-{{input value=goalTitle}}
+      <h4>Create Goal</h4>
+      {{input value=goalTitle}}
+      <button type="button" name="button" {{action 'addGoal' goalTitle}}>Create Goal</button>
+    </div>
+    <div class="col-sm-4">
+      <h4>Note for today</h4>
+      {{#if (not note)}}
+        <button type="button" name="button" {{action 'addNote'}}>Add Note</button>
+      {{else}}
+        {{textarea value=note}}
+        <button type="button" name="button" {{action 'clearNote'}}>Clear Note</button>
+        <button type="button" name="button" {{action 'saveNote'}}>Save Note</button>
+      {{/if}}
+    </div>
+</div>
 
-<button type="button" name="button" {{action 'addGoal' goalTitle}}>Create Goal</button>
 
-<hr>
-<h4>Note for today</h4>
-
-
-{{#if (not note)}}
-  <button type="button" name="button" {{action 'addNote'}}>Add Note</button>
-{{else}}
-  {{textarea value=note}}
-  <button type="button" name="button" {{action 'clearNote'}}>Clear Note</button>
-  <button type="button" name="button" {{action 'saveNote'}}>Save Note</button>
-{{/if}}

@@ -1,11 +1,12 @@
 {{#if session.isWorking}}
   One sec while we get you signed in...
 {{else if session.isAuthenticated}}
-  {{session.currentUser.username}}
-  <button {{action 'logout'}}>Logout</button>
+  <div class="" style="float:pull-right;">
+    {{session.currentUser.displayName}}
+    <button {{action 'logout'}}>Logout</button>  
+  </div>
   {{outlet}}
 {{else}}
   {{error}}
   <button {{action "signIn" "google"}}>Sign in with google</button>
 {{/if}}
-{{outlet}}

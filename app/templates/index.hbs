@@ -1,0 +1,13 @@
+<h4>Goals</h4>
+<ul>
+  {{#each content as |goal|}}
+    <li>{{goal.title}}</li>
+  {{/each}}
+</ul>
+
+<h4>Create Goal</h4>
+{{input value=goalTitle}}
+
+<button type="button" name="button" {{action 'addGoal' goalTitle}}>Create Goal</button>
+
+<hr>

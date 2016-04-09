@@ -1,6 +1,6 @@
 <h4>Goals</h4>
 <ul>
-  {{#each content as |goal|}}
+  {{#each content.goals as |goal|}}
     <li>{{goal.title}}</li>
   {{/each}}
 </ul>
@@ -11,3 +11,13 @@
 <button type="button" name="button" {{action 'addGoal' goalTitle}}>Create Goal</button>
 
 <hr>
+<h4>Note for today</h4>
+
+
+{{#if (not note)}}
+  <button type="button" name="button" {{action 'addNote'}}>Add Note</button>
+{{else}}
+  {{textarea value=note}}
+  <button type="button" name="button" {{action 'clearNote'}}>Clear Note</button>
+  <button type="button" name="button" {{action 'saveNote'}}>Save Note</button>
+{{/if}}

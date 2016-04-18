@@ -4,7 +4,9 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'dlight-mentor',
     environment: environment,
-    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    contentSecurityPolicy: { 
+      'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com http://localhost:3000" 
+    },
     firebase: 'https://dlight-mentor.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
@@ -14,14 +16,33 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
+    
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+    
+    'ember-simple-auth-token': {
+      // get token
+      serverTokenEndpoint: 'http://localhost:3000/get-token',
+      // refresh token
+      serverTokenRefreshEndpoint: 'http://localhost:3000/refresh-token',
+      // timeFactor * refreshLeeway = milliseconds before token refresh
+      timeFactor: 1000,   
+      refreshLeeway: 60, // 1 minute
+    },
+
+    'ember-simple-auth': {
+      authorizer: 'simple-auth-authorizer:token'
+    },
+    
     torii: {
-      // a 'session' property will be injected on routes and controllers
-      sessionServiceName: 'session'
+      providers: {
+        'google-oauth2-bearer': {
+          apiKey: '714040861378-d1bd207prbds6c0liull39dr1u7ot6dg.apps.googleusercontent.com',
+          redirectUri: 'http://localhost:4200/'
+        },
+      }
     }
   };
 

@@ -45,7 +45,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     // },
 
     logout: function() {
-      this.get("session").close();
+      // this.get("session").close();
+      this.get('session').invalidate();
     }
   }
 });

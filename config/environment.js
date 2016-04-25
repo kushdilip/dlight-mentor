@@ -67,8 +67,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.locationType = 'hash';
-    ENV.rootUrl = '/dlight-mentor';
+    // ENV.locationType = 'hash';
+    // ENV.rootUrl = '/dlight-mentor';
   }
 
   return ENV;

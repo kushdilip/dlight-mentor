@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'dlight-mentor',
     environment: environment,
     contentSecurityPolicy: { 
-      'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com http://localhost:3000" 
+      'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com http://localhost:4000" 
     },
     firebase: 'https://dlight-mentor.firebaseio.com/',
     baseURL: '/',
@@ -24,12 +24,12 @@ module.exports = function(environment) {
     
     'ember-simple-auth-token': {
       // get token
-      serverTokenEndpoint: 'http://localhost:3000/get-token',
+      serverTokenEndpoint: 'http://localhost:4000/api/auth/get-token',
       // refresh token
-      serverTokenRefreshEndpoint: 'http://localhost:3000/refresh-token',
+      serverTokenRefreshEndpoint: 'http://localhost:4000/api/auth/refresh-token',
       // timeFactor * refreshLeeway = milliseconds before token refresh
       timeFactor: 1000,   
-      refreshLeeway: 60, // 1 minute
+      refreshLeeway: 20, // 1 minute
     },
 
     'ember-simple-auth': {
@@ -41,6 +41,8 @@ module.exports = function(environment) {
         'google-oauth2-bearer': {
           apiKey: '714040861378-d1bd207prbds6c0liull39dr1u7ot6dg.apps.googleusercontent.com',
           redirectUri: 'http://localhost:4200/'
+        //   ,scope: 'profile'
+        //   scope: 'email https://www.googleapis.com/auth/drive.appdata'
         },
       }
     }
@@ -69,6 +71,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // ENV.locationType = 'hash';
     // ENV.rootUrl = '/dlight-mentor';
+    ENV.torii.providers['google-oauth2-bearer'].redirectUri = 'http://localhost:4000';
   }
 
   return ENV;

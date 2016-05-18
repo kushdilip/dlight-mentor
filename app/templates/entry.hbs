@@ -1,15 +1,14 @@
 <h3>Hello</h3>
 <div class="row">
     <div class="col-sm-8">
-      <h4>Goals</h4>
+      <h4>Goals: {{content.goals.length}}</h4>
       <ul>
         {{#each content.goals as |goal|}}
-          <li>{{goal.title}}</li>
+          <li>{{goal.title}}: {{goal.desc}}</li>
         {{/each}}
       </ul>
 
-      <h4>Create Goal</h4>
-      {{input value=goalTitle}}
+      {{input value=goalTitle placeholder="create new goal"}}
       <button type="button" name="button" {{action 'addGoal' goalTitle}}>Create Goal</button>
     </div>
     <div class="col-sm-4">

@@ -1,10 +1,45 @@
-{{#if session.isWorking}}
-  One sec while we get you signed in...
-{{else if session.isAuthenticated}}
-  {{session.currentUser.displayName}}
-  <button {{action 'logout'}}>Logout</button>  
-  {{outlet}}
-{{else}}
-  {{error}}
-  <button {{action "signIn" "google"}}>Sign in with google</button>
-{{/if}}
+{{#paper-nav-container class="site-nav-container"}}
+    {{#if session.isWorking}}
+      One sec while we get you signed in...
+    {{else if session.isAuthenticated}}
+        {{#paper-sidenav class="md-sidenav-left md-whiteframe-z2" locked-open="gt-sm"}}
+            {{#paper-toolbar}}
+              <div class="md-toolbar-tools">
+                <div class="logo">
+                  <img src="logo.png" height="30px"/>
+                </div>
+              </div>
+            {{/paper-toolbar}}
+            {{#paper-content}}
+              {{#paper-list}}
+                {{#paper-item action=(transition-to "index")}}Home{{/paper-item}}
+                {{#paper-item action=(transition-to "index")}}Stats{{/paper-item}}
+              {{/paper-list}}
+            {{/paper-content}}
+        {{/paper-sidenav}}
+        <div layout="column" tabindex="-1" role="main" flex>
+            {{#paper-toolbar}}
+              <div class="md-toolbar-tools">
+                {{#paper-sidenav-toggle as |toggle|}}
+                  {{#paper-button target=toggle action="toggleMenu" icon-button=true}}{{paper-icon "menu"}}{{/paper-button}}
+                {{/paper-sidenav-toggle}}
+                {{!-- <span class="md-breadcrumb-page">Title</span> --}}
+                <span>{{session.currentUser.displayName}}</span>
+                <button {{action 'logout'}}>Logout</button>
+              </div>
+            {{/paper-toolbar}}
+            {{outlet}}
+        </div>
+    {{else}}
+        <div layout="column" tabindex="-1" role="main" flex>
+            {{#paper-toolbar}}
+                <div class="md-toolbar-tools">
+                    <button {{action "signIn" "google"}}>Sign in with google</button>
+                </div>
+            {{/paper-toolbar}}
+            {{#paper-content}}
+                {{error}}
+            {{/paper-content}}
+        </div>
+    {{/if}}
+{{/paper-nav-container}}

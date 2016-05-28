@@ -1,11 +1,21 @@
 <div class="site-content-container">
     <h3>Hello</h3>
     <div class="row">
-        {{#task-box title="Tasks"}}
-            
+        {{#task-box 
+          title="Tasks"
+          content=content.tasks
+          addTask=(action "addTask" false)
+        }}
+          
         {{/task-box}}
         
-        {{task-box title="hbts"}}
+        {{#task-box 
+          title="hbts"
+          isHabit=true
+          addTask=(action "addTask" true)
+        }}
+              
+        {{/task-box}}
         <div class="col-sm-8">
           <h4>Goals: {{content.goals.length}}</h4>
           <ul>
@@ -28,7 +38,5 @@
           {{/if}}
         </div>
     </div>
-
-
-    
 </div>
+

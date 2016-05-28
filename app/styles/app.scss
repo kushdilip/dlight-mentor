@@ -1,5 +1,9 @@
 @import 'ember-paper';
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+
 @import 'app-variables';
+@import 'table';
 
 body,
 html {
@@ -42,3 +46,13 @@ html {
 md-card md-card-title {
     padding: 16px;
 }
+
+.ember-modal-dialog, .ember-modal-overlay {
+  z-index: 100;
+}
+
+.ember-modal-dialog {
+  border-radius: 0;
+  min-width: 500px;
+}
+

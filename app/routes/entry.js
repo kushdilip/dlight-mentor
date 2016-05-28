@@ -5,17 +5,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model() {
         let user = this.get('session').get('uid');
         let hash = {
-          goals: this.store.findAll('goal')
+          goals: this.store.findAll('goal'),
+          tasks: this.store.findAll('task'),
+          habits: this.store.findAll('habit'),
         }
         return Ember.RSVP.hash(hash);
-    },
-    
-    actions: {
-        addGoal(title){
-            if(title){
-                var goal = this.store.createRecord('goal', { title });
-                goal.save();
-            }
-        }
     }
 });

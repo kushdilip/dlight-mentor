@@ -6,11 +6,65 @@
             <div style="flex: 4;">
                 {{paper-input value=search icon="search" icon-class="search"}}
             </div>
-            {{#paper-button}}Add +{{/paper-button}}
-        </div>      
+            <div>
+              {{#paper-button primary=true raised=true action="toggleModal"}}Add +{{/paper-button}}              
+            </div>
+        </div>
     {{/paper-card-title-text}}
   {{/paper-card-title}}
   {{#paper-card-content}}
+    {{#light-table table as |t|}}
+      {{t.head}}
+
+      {{#t.body as |body|}}
+        {{#body.expanded-row as |row|}}
+          Hello <b>{{row.firstName}}</b>
+        {{/body.expanded-row}}
+
+        {{#if isLoading}}
+          {{#body.loader}}
+            Loading...
+          {{/body.loader}}
+        {{/if}}
+
+        {{#if table.isEmpty}}
+          {{#body.no-data}}
+            No tasks found.
+          {{/body.no-data}}
+        {{/if}}
+      {{/t.body}}
+
+      {{t.foot}}
+    {{/light-table}}
+    
     {{yield}}
   {{/paper-card-content}}
 {{/paper-card}}
+
+
+{{#if showModal}}
+  {{#modal-dialog 
+    close=(action "toggleModal")
+    translucentOverlay=true
+  }}
+    <h1>
+      {{#if isHabit}}Add H{{else}}Add T{{/if}}
+    </h1>
+    {{paper-input label="Title" value=task.title}}
+    {{paper-input label="Description" value=task.desc}}
+    {{paper-input label="Due on" type="date" value=task.date}}
+      {{#paper-select placeholder="Select G" model=userState}}
+      {{#each states as |state|}}
+        {{#paper-option value=state.abbrev}}
+          {{state.abbrev}}
+        {{/paper-option}}
+      {{/each}}
+    {{/paper-select}}
+    
+    <div style="display:flex; flex-direction: row-reverse;">
+      {{#paper-button primary=true raised=true action="saveTask"}}Save{{/paper-button}}
+      {{#paper-button primary=true raised=true action="toggleModal"}}Close{{/paper-button}}  
+    </div>
+    
+  {{/modal-dialog}}
+{{/if}}

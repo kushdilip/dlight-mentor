@@ -6,6 +6,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         if (session && session.get('isAuthenticated')) {
             this.transitionTo('entry', 'today');
             // this.get("session").fetch().catch(function() {});
-      }
+        }
     }
 });

@@ -3,9 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model() {
-        let user = this.get('session').get('uid');
         let hash = {
-          goals: this.store.findAll('goal'),
           tasks: this.store.findAll('task'),
           habits: this.store.findAll('habit'),
         }

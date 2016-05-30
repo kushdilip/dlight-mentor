@@ -14,6 +14,17 @@
               {{#paper-list}}
                 {{#paper-item action=(transition-to "index")}}Home{{/paper-item}}
                 {{#paper-item action=(transition-to "index")}}Stats{{/paper-item}}
+                <hr style="clear:both; margin: 0">
+                <div>
+                  <h3 style="float: left;margin: 12px;">
+                    {{!-- Goals --}}
+                  </h3>
+                  {{#paper-button raised=true action="toggleModal" primary=true class="right"}}Add +{{/paper-button}}
+                </div>
+                <hr style="clear:both; margin: 0">
+                {{#each content as |goal|}}
+                  {{#paper-item action=(transition-to "index")}}{{goal.title}}{{/paper-item}}
+                {{/each}}
               {{/paper-list}}
             {{/paper-content}}
         {{/paper-sidenav}}
@@ -43,3 +54,20 @@
         </div>
     {{/if}}
 {{/paper-nav-container}}
+
+{{#if showModal}}
+  {{#modal-dialog 
+    close=(action "toggleModal")
+    translucentOverlay=true
+  }}
+    <h2>Add New Goal</h2>
+    {{paper-input label="Title" value=goal.title}}
+    {{paper-input label="Description" value=goal.desc}}
+    
+    <div style="display:flex; flex-direction: row-reverse;">
+      {{#paper-button primary=true raised=true action="saveTask"}}Save{{/paper-button}}
+      {{#paper-button primary=true raised=true action="toggleModal"}}Cancel{{/paper-button}}  
+    </div>
+    
+  {{/modal-dialog}}
+{{/if}}

@@ -2,6 +2,13 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
+  model(){
+    let session = this.get('session');
+    if (session && session.get('isAuthenticated')) {
+      return this.store.findAll('goal');
+    }
+  },
+  
   actions: {
     signIn() {
       var session = this.get('session');

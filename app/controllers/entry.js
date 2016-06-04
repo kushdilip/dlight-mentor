@@ -1,7 +1,7 @@
 export default Ember.Controller.extend({
   session: Ember.inject.service(),
-  
-  actions: {      
+
+  actions: {
       addTask(isHabit, task={}){
         let taskObj = this.store.createRecord('task', {
           title: task.title,
@@ -9,6 +9,14 @@ export default Ember.Controller.extend({
           startDate: task.date
         });
         taskObj.save();
+      },
+      
+      saveNote(){
+        
+      },
+      
+      getNoteForDay(date){
+        
       }
   }
 });

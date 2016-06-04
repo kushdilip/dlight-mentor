@@ -1,1 +1,33 @@
-<h3>Note</h3>
+<div class="notes-container">
+  
+  {{#if isEdit}}
+    {{#paper-button raised=true primary=true class="right" action="saveNote"}}Save{{/paper-button}}
+    {{#paper-button raised=true primary=true class="right" action="cancelNote"}}Cancel{{/paper-button}}
+  {{else}}
+    {{#paper-button icon-button=true action="toggleBoxHeight" class="right"}}
+      {{#if (eq boxState 'open')}}
+        {{paper-icon "arrow-drop-down" size="lg" }}
+      {{else}}
+        {{paper-icon "arrow-drop-up" size="lg" }}
+      {{/if}}
+    {{/paper-button}}
+    
+    {{#paper-button icon-button=true action="editNote" class="right"}}{{paper-icon "create" size="lg" }}{{/paper-button}}
+  {{/if}}
+
+  {{#paper-button icon-button=true action="prevNote" class="center"}}{{paper-icon "arrow-back" size="lg" }}{{/paper-button}}
+  {{#paper-button icon-button=true action="nextNote" class="center"}}{{paper-icon "arrow-forward" size="lg" }}{{/paper-button}}
+
+  <div class="clearfix"></div>
+  <div class="content">
+    {{#if isEdit}}
+      {{paper-input label="Title" value=content.title required=true required-errortext="title is required."}}
+      {{paper-input textarea=true label="Content" value=content.desc}}
+    {{else}}
+      <h3 class="no-margin">{{content.title}}</h3>
+      <p>
+        {{content.desc}}
+      </p>      
+    {{/if}}
+  </div>
+</div>

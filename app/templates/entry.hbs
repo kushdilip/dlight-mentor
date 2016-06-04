@@ -1,24 +1,26 @@
 <div class="site-content-container">
-    <div class="row">
-        {{#task-box 
-          title="Tasks"
-          content=content.tasks
-          addTask=(action "addTask" false)
-        }}
+    <div class="task-content">
+        <div class="row ">
+          {{#task-box 
+            title="Tasks"
+            content=content.tasks
+            addTask=(action "addTask" false)
+          }}
+            
+          {{/task-box}}
           
-        {{/task-box}}
-        
-        {{#task-box 
-          title="hbts"
-          isHabit=true
-          addTask=(action "addTask" true)
-        }}
-              
-        {{/task-box}}
-        
+          {{#task-box 
+            title="hbts"
+            isHabit=true
+            addTask=(action "addTask" true)
+          }}
+
+          {{/task-box}}
+        </div>
     </div>
     
-    {{#notes-box}}
-      
+    {{#notes-box
+      content=content.note
+    }}
     {{/notes-box}}
 </div>

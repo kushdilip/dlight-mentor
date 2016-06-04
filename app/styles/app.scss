@@ -40,7 +40,37 @@ html {
 }
 
 .site-content-container {
+    display: flex;
+    flex-direction: column;
     margin: 10px;
+    height: 100%;
+      
+    .task-content {
+        flex: 3;
+        overflow: auto;
+    }
+    
+    .notes-box {
+        height: 200px;
+        width: 100%;
+        border: black solid 2px;
+        flex-shrink: 0;
+        overflow: hidden;
+        
+        &.close {
+          height: 50px;
+        }
+        
+        .notes-container {
+          overflow: scroll;
+          height: 100%;
+          
+          .content {
+            margin: 0 10px
+          }
+        }
+    }
+    
 }
 
 md-card md-card-title {
@@ -60,3 +90,14 @@ md-card md-card-title {
   float: right;
 }
 
+.clearfix {
+  clear: both;
+}
+
+.no-pad {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}

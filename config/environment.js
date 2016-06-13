@@ -24,9 +24,9 @@ module.exports = function(environment) {
     
     'ember-simple-auth-token': {
       // get token
-      serverTokenEndpoint: 'http://localhost:4005/api/auth/get-token',
+      serverTokenEndpoint: '/api/auth/get-token',
       // refresh token
-      serverTokenRefreshEndpoint: 'http://localhost:4005/api/auth/refresh-token',
+      serverTokenRefreshEndpoint: '/api/auth/refresh-token',
       // timeFactor * refreshLeeway = milliseconds before token refresh
       timeFactor: 1000,   
       refreshLeeway: 20, // 1 minute
@@ -40,7 +40,7 @@ module.exports = function(environment) {
       providers: {
         'google-oauth2-bearer': {
           apiKey: '714040861378-d1bd207prbds6c0liull39dr1u7ot6dg.apps.googleusercontent.com',
-          redirectUri: 'http://localhost:4200/'
+          redirectUri: 'http://dev.goalslog.com/'
         //   ,scope: 'profile'
         //   scope: 'email https://www.googleapis.com/auth/drive.appdata'
         },
@@ -71,7 +71,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // ENV.locationType = 'hash';
     // ENV.rootUrl = '/dlight-mentor';
-    ENV.torii.providers['google-oauth2-bearer'].redirectUri = 'http://localhost:4005';
+    ENV.torii.providers['google-oauth2-bearer'].redirectUri = 'http://goalslog.com';
   }
 
   return ENV;

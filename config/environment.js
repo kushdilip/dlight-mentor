@@ -40,7 +40,7 @@ module.exports = function(environment) {
       providers: {
         'google-oauth2-bearer': {
           apiKey: '714040861378-d1bd207prbds6c0liull39dr1u7ot6dg.apps.googleusercontent.com',
-          redirectUri: 'http://dev.goalslog.com/'
+          redirectUri: 'http://dev.goalslog.com'
         //   ,scope: 'profile'
         //   scope: 'email https://www.googleapis.com/auth/drive.appdata'
         },
@@ -54,6 +54,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+  }
+  
+  if (environment === 'prod') {
+    ENV.torii.providers['google-oauth2-bearer'].redirectUri = 'http://prod.goalslog.com';
   }
 
   if (environment === 'test') {

@@ -28,12 +28,13 @@ module.exports = function(environment) {
       // refresh token
       serverTokenRefreshEndpoint: '/api/auth/refresh-token',
       // timeFactor * refreshLeeway = milliseconds before token refresh
-      timeFactor: 1000,   
-      refreshLeeway: 20, // 1 minute
+      refreshAccessTokens: true,
+      timeFactor: 1000,  // because exp time is comming in seconds
+      refreshLeeway: 40 // seconds before expiry
     },
 
     'ember-simple-auth': {
-      authorizer: 'simple-auth-authorizer:token'
+      authorizer: 'simple-auth-authorizer:jwt'
     },
     
     torii: {

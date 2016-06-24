@@ -6,6 +6,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     let session = this.get('session');
     if (session && session.get('isAuthenticated')) {
       return this.store.findAll('goal');
+    } else {
+      this.transitionTo('index');
     }
   },
   
@@ -23,7 +25,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 						.authenticate('authenticator:jwt', { password: googleToken} )
 						.then(function(){
 							console.log('custom token authentication successful!');
-              that.transitionTo('entry', 'today');
+              that.transitionTo('index');
 						}, function (error) {
 							console.log('custom token authentication failed!', error.message);
 						});

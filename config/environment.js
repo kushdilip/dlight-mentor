@@ -29,8 +29,8 @@ module.exports = function(environment) {
       serverTokenRefreshEndpoint: '/api/auth/refresh-token',
       // timeFactor * refreshLeeway = milliseconds before token refresh
       refreshAccessTokens: true,
-      timeFactor: 1000,  // because exp time is comming in seconds
-      refreshLeeway: 40 // seconds before expiry
+      timeFactor: 1000,  // convert expirty time to milliseconds, because it is comming in seconds
+      refreshLeeway: 300 // seconds before expiry
     },
 
     'ember-simple-auth': {

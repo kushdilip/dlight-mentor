@@ -1,0 +1,16 @@
+<div class="goal-page">
+  {{#if isEdit}}
+    {{validated-input model=content label='Title' valuePath='title' placeholder='Enter title'}}
+    {{paper-input textarea=true label="Description" value=content.desc}}
+    
+    {{#paper-button primary=true raised=true class="right" action="revertGoal"}}Cancel{{/paper-button}}
+    {{#paper-button primary=true raised=true class="right" action="saveGoal"}}Save{{/paper-button}}
+  {{else}}
+    {{#paper-button primary=true raised=true class="right" action="toggleEdit"}}Edit{{/paper-button}}
+    <div class="clearfix"></div>
+    <h3 class="no-margin title">{{content.title}}</h3>
+    <p>
+      {{content.desc}}
+    </p>
+  {{/if}}
+</div>

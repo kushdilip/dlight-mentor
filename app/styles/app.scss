@@ -101,3 +101,27 @@ md-card md-card-title {
 .no-margin {
   margin: 0;
 }
+
+.has-error .form-control:focus,
+.has-success .form-control:focus {
+  box-shadow: none;
+}
+
+.has-error .form-control:focus {
+  border-color: tomato;
+}
+
+.has-success .form-control:focus {
+  border-color: rgb(31, 187, 20);
+}
+
+// Styles for goal page
+.goal-page {
+  margin: 20px;
+  
+  h3, p {
+    background: whitesmoke;
+    padding: 10px;
+  }
+}
+

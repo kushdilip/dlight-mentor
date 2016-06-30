@@ -6,9 +6,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     let session = this.get('session');
     if (session && session.get('isAuthenticated')) {
       return this.store.findAll('goal');
-    } else {
-      this.transitionTo('index');
     }
+  },
+    
+  setupController() {
+    this._super(...arguments);
   },
   
   actions: {
@@ -17,16 +19,18 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       var that = this;
 			this.get('torii')
 				.open('google-oauth2-bearer')
-				.then(function(googleAuth){
+				.then((googleAuth) => {
 					var googleToken = googleAuth.authorizationToken.access_token;
 					console.log('Google authentication successful.');
 
 					session
 						.authenticate('authenticator:jwt', { password: googleToken} )
-						.then(function(){
+						.then(() => {
 							console.log('custom token authentication successful!');
-              that.transitionTo('index');
-						}, function (error) {
+              // that.transitionTo('application');
+              this.setupController(this.get('controller'), this.model());
+              this.transitionTo('entry', 'today');
+						}, (error) => {
 							console.log('custom token authentication failed!', error.message);
 						});
 

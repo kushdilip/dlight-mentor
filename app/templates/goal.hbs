@@ -13,4 +13,22 @@
       {{content.desc}}
     </p>
   {{/if}}
+  
+  <div class="task-content">
+      <div class="row ">
+        {{#task-box 
+          title="Tasks"
+          content=content.tasks
+        }}
+          
+        {{/task-box}}
+        
+        {{#task-box 
+          title="hbts"
+          isHabit=true
+        }}
+
+        {{/task-box}}
+      </div>
+  </div>
 </div>

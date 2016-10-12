@@ -1,19 +1,24 @@
-{{#paper-card}}
-  {{#paper-card-title}}
-    {{#paper-card-title-text}}
-        <div style="display: flex; flex-direction: row;">
-            <h4 style="margin: 10px; flex: 1">{{title}}</h4>
-            <div style="flex: 4;">
-                {{paper-input value=search icon="search" icon-class="search"}}
-            </div>
-            <div>
-              {{#paper-button primary=true raised=true action="toggleModal"}}Add +{{/paper-button}}
-            </div>
-        </div>
-    {{/paper-card-title-text}}
-  {{/paper-card-title}}
-  {{#paper-card-content}}
-    {{#light-table table as |t|}}
+<div class="task-box">
+  <div style="display: flex; flex-direction: row;">
+      <h4 style="margin: 10px; flex: 1">{{title}}</h4>
+      <div style="flex: 4;">
+          {{paper-input value=search icon="search" icon-class="search"}}
+      </div>
+      <div>
+        {{#paper-button primary=true raised=true action="toggleModal"}}Add +{{/paper-button}}
+      </div>
+  </div>
+  <div class="task-list">
+    {{#ember-collection
+      items=content
+      cell-layout=(fixed-grid-layout 600 50) as |item index|
+    }}
+      <div class="item-row">
+        {{item.title}}
+      </div>
+    {{/ember-collection}}
+    
+    {{!-- {{#light-table table as |t|}}
       {{t.head}}
 
       {{#t.body as |body|}}
@@ -37,10 +42,10 @@
       {{t.foot}}
     {{/light-table}}
     
-    {{yield}}
-  {{/paper-card-content}}
-{{/paper-card}}
-
+    {{yield}} --}}
+  </div>
+  
+</div>
 
 {{#if showModal}}
   {{#modal-dialog 

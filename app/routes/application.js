@@ -6,6 +6,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     let session = this.get('session');
     if (session && session.get('isAuthenticated')) {
       return this.store.findAll('goal');
+    } else {
+      this.transitionTo('index');
     }
   },
     

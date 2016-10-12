@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['notes-box'],
   classNameBindings: ['boxState'],
-  boxState: 'open',
+  boxState: 'close',
   isEdit: false,
   
   actions: {

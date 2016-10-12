@@ -22,6 +22,14 @@ export default Ember.Component.extend({
       }];
     }),
     
+    foo: function() {
+      var items = [];
+      for (var i = 0; i < 10; i++) {
+        items.push({name: "Item " + i});
+      }
+      return items;
+    }.property(),
+    
     actions: {
       toggleModal(){
         this.set('task', {});
